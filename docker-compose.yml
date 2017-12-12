@@ -2,6 +2,7 @@ version: '3'
 
 volumes:
   mongo: {}
+  fulfillapi: {}
 
 services:
   captureapi:
@@ -15,7 +16,7 @@ services:
       - mongo
       - rabbitmq
     ports:
-      - 8080
+      - 32000:8080
 
   fulfillapi:
     image: shanepeckham/fulfillorderack:v3
@@ -25,8 +26,10 @@ services:
       - MONGOHOST=mongodb://mongo/orders/
     depends_on:
       - mongo
+    volumes:
+      - fulfillapi:/orders
     ports:
-      - 8080
+      - 32001:8080
 
   eventlistener:
     image: shanepeckham/rabbitmqlistenerack:v3
