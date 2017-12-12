@@ -1,0 +1,55 @@
+version: '3'
+
+volumes:
+  mongo: {}
+
+services:
+  captureapi:
+    image: shanepeckham/captureorderack:v3
+    environment:
+      - TEAMNAME=TEAM3
+      - MONGOHOST=mongodb://mongo/orders
+      - RABBITMQHOST=amqp://rabbit:rabbit@rabbitmq:5672
+    depends_on:
+      - mongo
+      - rabbitmq
+    ports:
+      - 8080
+
+  fulfillapi:
+    image: shanepeckham/fulfillorderack:v3
+    environment:
+      - TEAMNAME=TEAM3
+      - MONGOHOST=mongodb://mongo/orders
+    depends_on:
+      - mongo
+    ports:
+      - 8080
+
+  eventlistener:
+    image: shanepeckham/rabbitmqlistenerack:v3
+    environment:
+      - TEAMNAME=TEAM3
+      - RABBITMQHOST=amqp://rabbit:rabbit@rabbitmq:5672
+      - PROCESSENDPOINT=http://fulfillapi:8080/v1/order
+    depends_on:
+      - rabbitmq
+      - fulfillapi
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    hostname: rabbit
+    restart: always
+    environment:
+      - RABBITMQ_DEFAULT_USER=rabbit
+      - RABBITMQ_DEFAULT_PASS=rabbit
+    ports:
+      - 15672
+
+  mongo:
+    image: mongo:jessie
+    restart: always
+    ports:
+      - 27017
+    volumes:
+      - mongo:/data/db
