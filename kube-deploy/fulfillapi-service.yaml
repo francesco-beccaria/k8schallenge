@@ -10,8 +10,8 @@ metadata:
   name: fulfillapi
 spec:
   ports:
-  - name: "32001"
-    port: 32001
+  - name: "80"
+    port: 80
     targetPort: 8080
   selector:
     io.kompose.service: fulfillapi

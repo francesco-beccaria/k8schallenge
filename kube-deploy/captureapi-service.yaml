@@ -10,8 +10,8 @@ metadata:
   name: captureapi
 spec:
   ports:
-  - name: "32000"
-    port: 32000
+  - name: "80"
+    port: 80
     targetPort: 8080
   selector:
     io.kompose.service: captureapi
