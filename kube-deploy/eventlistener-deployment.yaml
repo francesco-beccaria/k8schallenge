@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f ../docker-compose.yml
+    kompose.version: 1.6.0 (e4adfef)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: eventlistener
+  name: eventlistener
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: eventlistener
+    spec:
+      containers:
+      - env:
+        - name: PROCESSENDPOINT
+          value: http://fulfillapi:8080/v1/order
+        - name: RABBITMQHOST
+          value: amqp://rabbit:rabbit@rabbitmq:5672
+        - name: TEAMNAME
+          value: TEAM3
+        image: shanepeckham/rabbitmqlistenerack:v3
+        name: eventlistener
+        resources: {}
+      restartPolicy: Always
+status: {}
