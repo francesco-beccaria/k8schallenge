@@ -6,6 +6,7 @@ volumes:
 services:
   captureapi:
     image: shanepeckham/captureorderack:v3
+    restart: always
     environment:
       - TEAMNAME=TEAM3
       - MONGOHOST=mongodb://mongo/orders
@@ -18,6 +19,7 @@ services:
 
   fulfillapi:
     image: shanepeckham/fulfillorderack:v3
+    restart: always
     environment:
       - TEAMNAME=TEAM3
       - MONGOHOST=mongodb://mongo/orders
@@ -28,6 +30,7 @@ services:
 
   eventlistener:
     image: shanepeckham/rabbitmqlistenerack:v3
+    restart: always
     environment:
       - TEAMNAME=TEAM3
       - RABBITMQHOST=amqp://rabbit:rabbit@rabbitmq:5672
@@ -38,13 +41,14 @@ services:
 
   rabbitmq:
     image: rabbitmq:3-management
-    hostname: rabbit
+    hostname: rabbitmq
     restart: always
     environment:
       - RABBITMQ_DEFAULT_USER=rabbit
       - RABBITMQ_DEFAULT_PASS=rabbit
     ports:
       - 15672
+      - 5672
 
   mongo:
     image: mongo:jessie
