@@ -9,7 +9,7 @@ services:
     restart: always
     environment:
       - TEAMNAME=TEAM3
-      - MONGOHOST=mongodb://mongo/orders
+      - MONGOHOST=mongodb://mongo/orders/
       - RABBITMQHOST=amqp://rabbit:rabbit@rabbitmq:5672
     depends_on:
       - mongo
@@ -22,7 +22,7 @@ services:
     restart: always
     environment:
       - TEAMNAME=TEAM3
-      - MONGOHOST=mongodb://mongo/orders
+      - MONGOHOST=mongodb://mongo/orders/
     depends_on:
       - mongo
     ports:
