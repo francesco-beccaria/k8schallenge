@@ -24,7 +24,7 @@ spec:
           value: mongodb://mongo/orders/
         - name: TEAMNAME
           value: TEAM3
-        image: shanepeckham/fulfillorderack:v3
+        image: team3acr.azurecr.io/shanepeckham/fulfillorderack:v3
         name: fulfillapi
         ports:
         - containerPort: 8080

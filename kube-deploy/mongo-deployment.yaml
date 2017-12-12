@@ -19,7 +19,7 @@ spec:
         io.kompose.service: mongo
     spec:
       containers:
-      - image: mongo:jessie
+      - image: team3acr.azurecr.io/mongo:jessie
         name: mongo
         ports:
         - containerPort: 27017

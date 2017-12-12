@@ -23,7 +23,7 @@ spec:
           value: rabbit
         - name: RABBITMQ_DEFAULT_USER
           value: rabbit
-        image: rabbitmq:3-management
+        image: team3acr.azurecr.io/rabbitmq:3-management
         name: rabbitmq
         ports:
         - containerPort: 15672

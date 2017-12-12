@@ -25,7 +25,7 @@ spec:
           value: amqp://rabbit:rabbit@rabbitmq:5672
         - name: TEAMNAME
           value: TEAM3
-        image: shanepeckham/rabbitmqlistenerack:v3
+        image: team3acr.azurecr.io/shanepeckham/rabbitmqlistenerack:v3
         name: eventlistener
         resources: {}
       restartPolicy: Always

@@ -25,7 +25,7 @@ spec:
           value: amqp://rabbit:rabbit@rabbitmq:5672
         - name: TEAMNAME
           value: TEAM3
-        image: shanepeckham/captureorderack:v3
+        image: team3acr.azurecr.io/shanepeckham/captureorderack:v3
         name: captureapi
         ports:
         - containerPort: 8080
