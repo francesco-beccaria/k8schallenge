@@ -51,7 +51,6 @@ services:
       - RABBITMQ_DEFAULT_PASS=rabbit
     ports:
       - 15672
-      - 5672
 
   mongo:
     image: mongo:jessie
