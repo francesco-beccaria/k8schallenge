@@ -4,7 +4,7 @@
 az provider register -n Microsoft.ContainerService
 
 # build resource groups and storage
-az group create --name Team3 --location "East US
+az group create --name Team3 --location "East US"
 az storage account create --location eastus --name team3 --resource-group Team3 --sku Standard_RAGRS
 
 # get kube up
